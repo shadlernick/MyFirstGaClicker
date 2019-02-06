@@ -8,20 +8,49 @@ public class Game : MonoBehaviour
 {
     public Text scoreText;
     public Text loginText;
-    int score = 0;
     public GameObject shopPanel;
-
+    Player player = new Player();
     public GameObject startPanel;
     public InputField inputName;
+    public Text speedText;
+    public Text moneyText;
+    public Text materialsText;
+
 
     public void Start()
     {
         startPanel.SetActive(true);
+        StartCoroutine(ScorePerSec());
+    }
+
+    public void Update()
+    {
+        scoreText.text = "Score: " + player.Score;
+        speedText.text = "Speed: " + player.Speed;
+        moneyText.text = "Money: " + player.Money;
+        materialsText.text = "Materials: " + player.Materials;
+    }
+
+    IEnumerator ScorePerSec()
+    {
+        int tempScore = 0;
+        while (true)
+        {
+            player.PlusScore();
+            player.Score += player.Speed / 10;
+            if (player.Score - tempScore >= 5)
+            {
+                player.Money += (player.Score - tempScore) / 5;
+                tempScore = player.Score;
+            }
+            player.SpeedDown();
+            yield return new WaitForSeconds(1);
+        }
     }
 
     public void SetName()
     {
-        Player player = new Player(inputName.text);
+        player.Name = inputName.text;
         loginText.text = inputName.text;
         startPanel.SetActive(false);
     }
@@ -32,8 +61,12 @@ public class Game : MonoBehaviour
     }
 
     public void OnClick()
-    {        
-        score++;
-        scoreText.text = "Score: " + score;
+    {
+        player.PlusSpeed();        
+    }
+
+    public void UpgradeEngine()
+    {
+        player.UpgradeEngine(player);
     }
 } 
