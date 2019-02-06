@@ -376,7 +376,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 519420030}
-        m_MethodName: ShopPanel
+        m_MethodName: _ShopPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 1627340026}
-  Shop: {fileID: 1555842916}
+  ShopPanel: {fileID: 1555842916}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
