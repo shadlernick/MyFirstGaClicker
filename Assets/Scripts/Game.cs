@@ -15,6 +15,7 @@ public class Game : MonoBehaviour
     public Text speedText;
     public Text moneyText;
     public Text materialsText;
+    public GameObject sky;
 
 
     public void Start()
@@ -44,6 +45,7 @@ public class Game : MonoBehaviour
                 tempScore = player.Score;
             }
             player.SpeedDown();
+            //sky.transform.position = new Vector3(-1, sky.transform.position.y, sky.transform.position.z);
             yield return new WaitForSeconds(1);
         }
     }
