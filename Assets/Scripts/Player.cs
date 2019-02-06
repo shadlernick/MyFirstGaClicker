@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts
 {
-    class Player
+    public class Player
     {
+        string name;
+        int score;
+
+        public Player(string Name)
+        {
+            this.name = Name;
+            this.score = 0;
+        }
     }
 }

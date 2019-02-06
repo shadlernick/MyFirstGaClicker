@@ -2,21 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using Assets.Scripts;
 
 public class Game : MonoBehaviour
 {
-    public Text ScoreText;
+    public Text scoreText;
+    public Text loginText;
     int score = 0;
-    public GameObject ShopPanel;
+    public GameObject shopPanel;
 
-    public void _ShopPanel()
+    public GameObject startPanel;
+    public InputField inputName;
+
+    public void Start()
     {
-        ShopPanel.SetActive(!ShopPanel.activeSelf);
+        startPanel.SetActive(true);
+    }
+
+    public void SetName()
+    {
+        Player player = new Player(inputName.text);
+        loginText.text = inputName.text;
+        startPanel.SetActive(false);
+    }
+
+    public void ShopPanel()
+    {
+        shopPanel.SetActive(!shopPanel.activeSelf);
     }
 
     public void OnClick()
     {        
         score++;
-        ScoreText.text = "Score: " + score;
+        scoreText.text = "Score: " + score;
     }
 } 
