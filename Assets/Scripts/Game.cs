@@ -15,21 +15,33 @@ public class Game : MonoBehaviour
     public Text speedText;
     public Text moneyText;
     public Text materialsText;
-    public GameObject sky;
+    public GameObject Background;
+    public Animator animator;
+    
 
+    private Vector3 startPosition;
 
     public void Start()
     {
+        animator = Background.GetComponent<Animator>();
+        animator.speed = player.Speed / 10;
         startPanel.SetActive(true);
         StartCoroutine(ScorePerSec());
     }
 
     public void Update()
     {
+        animator.speed = player.Speed / 10;
         scoreText.text = "Score: " + player.Score;
         speedText.text = "Speed: " + player.Speed;
         moneyText.text = "Money: " + player.Money;
         materialsText.text = "Materials: " + player.Materials;
+        MoveBack();
+    }
+
+    public void MoveBack()
+    {
+        
     }
 
     IEnumerator ScorePerSec()
