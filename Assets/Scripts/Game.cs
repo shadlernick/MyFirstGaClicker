@@ -25,7 +25,7 @@ public class Game : MonoBehaviour
     {
         animator = Background.GetComponent<Animator>();
         animator.speed = player.Speed / 10;
-        startPanel.SetActive(true);
+        //startPanel.SetActive(true);
         StartCoroutine(ScorePerSec());
     }
 
@@ -82,5 +82,10 @@ public class Game : MonoBehaviour
     public void UpgradeEngine()
     {
         player.UpgradeEngine(player);
+    }
+
+    public void UpgradeBorer()
+    {
+        player.UpgradeBorer(player);
     }
 } 

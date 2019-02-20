@@ -20,9 +20,34 @@ namespace Assets.Scripts
             if(player.Money >= moneyForUpgrade && player.Materials >= materialsForUpgrade)
             {
                 player.Money -= moneyForUpgrade;
+                player.Materials -= materialsForUpgrade;
                 level++;
                 minSpeed += minSpeed / 2;
                 maxSpeed += maxSpeed / 2;
+                moneyForUpgrade *= 2;
+                materialsForUpgrade *= 2;
+            }
+        }
+    }
+
+    struct Borer
+    {
+        public int level;
+        public int minPower;
+        public int maxPower;
+
+        public int moneyForUpgrade;
+        public int materialsForUpgrade;
+
+        public void LevelUp(Player player)
+        {
+            if (player.Money >= moneyForUpgrade && player.Materials >= materialsForUpgrade)
+            {
+                player.Money -= moneyForUpgrade;
+                player.Materials -= materialsForUpgrade;
+                level++;
+                minPower += minPower / 2;
+                maxPower += maxPower / 2;
                 moneyForUpgrade *= 2;
                 materialsForUpgrade *= 2;
             }
@@ -37,6 +62,7 @@ namespace Assets.Scripts
         int materials { get; set; }
         int speed { get; set; }
         Engine engine;
+        Borer borer;
 
         public int Money
         {
@@ -71,12 +97,19 @@ namespace Assets.Scripts
             this.score = 0;
             money = 0;
             materials = 0;
+
             engine.level = 1;
             engine.minSpeed = 10;
             speed = engine.minSpeed;
             engine.maxSpeed = 100;
             engine.moneyForUpgrade = 10;
             engine.materialsForUpgrade = 0;
+
+            borer.level = 1;
+            borer.minPower = 0;
+            borer.maxPower = 0;
+            borer.moneyForUpgrade = 10;
+            borer.materialsForUpgrade = 0;
         }
 
         public int PlusScore()
@@ -123,6 +156,11 @@ namespace Assets.Scripts
         public void UpgradeEngine(Player player)
         {
             engine.LevelUp(player);
+        }
+
+        public void UpgradeBorer(Player player)
+        {
+            borer.LevelUp(player);
         }
     }
 }
